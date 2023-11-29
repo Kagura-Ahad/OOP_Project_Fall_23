@@ -161,3 +161,61 @@ void Game::run()
         SDL_Delay(10); // Adjust the delay to control the frame rate
     }
 }
+void Game::initVampire(SDL_Renderer* gRenderer)
+{
+	vampire.loadTexture(gRenderer, "C:/Users/AC/Desktop/OOP_Project_final/OOP_Project_Fall_23/Graphics/testgraphic.png");
+}
+
+void Game::handleEvents(SDL_Event& event)
+{
+	if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
+	{
+		switch (event.key.keysym.sym)
+		{
+		case SDLK_a: moveForward = true; break;
+		case SDLK_d: moveBackward = true; break;
+		case SDLK_w: jumping = true; break;
+		default: break;
+		}
+	}
+	else if (event.type == SDL_KEYUP && event.key.repeat == 0)
+	{
+		switch (event.key.keysym.sym)
+		{
+		case SDLK_a: moveForward = false; break;
+		case SDLK_d: moveBackward = false; break;
+		case SDLK_w: jumping = false; break;
+		default: break;
+		}
+	}
+}
+
+void Game::update()
+{
+	const int playerSpeed = 5;
+	const int playerJumpHeight = 10;
+	if (moveForward)
+	{
+		vampire.move(playerSpeed, 0);
+	}
+	else if (moveBackward)
+	{
+		vampire.move(-playerSpeed, 0);
+	}
+
+	if (jumping)
+	{
+		if (moveForward)
+		{
+			vampire.move(playerSpeed, -playerJumpHeight);
+		}
+		else if (moveBackward)
+		{
+			vampire.move(-playerSpeed, -playerJumpHeight);
+		}
+		else
+		{
+			vampire.move(0, -playerJumpHeight);
+		}
+	}
+}

@@ -5,6 +5,7 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>
+#include "player.hpp"
 
 class Game{
     //Screen dimension constants
@@ -16,6 +17,10 @@ class Game{
 
     //Current displayed texture
     SDL_Texture* gTexture = NULL;
+    Vampire vampire;
+    bool moveForward;
+    bool moveBackward;
+    bool jumping;
     
 
 public:
@@ -24,4 +29,7 @@ public:
     void close();
     SDL_Texture* loadTexture( std::string path );
     void run();
+    void initVampire(SDL_Renderer* gRenderer);
+    void handleEvents(SDL_Event& event);
+    void update();
 };

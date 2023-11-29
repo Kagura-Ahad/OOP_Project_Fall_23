@@ -1,3 +1,6 @@
+
+#include "player.hpp"
+#include "drawing.hpp"
 #include "game.hpp"
 
 int main(int argc, char *argv[]){
@@ -13,6 +16,7 @@ int main(int argc, char *argv[]){
         return 0;
     }
 
+    game.initVampire(Drawing::gRenderer);
     game.run();
     game.close();
 

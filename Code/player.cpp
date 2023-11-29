@@ -1,4 +1,4 @@
-#include "vampire.hpp"
+#include "player.hpp"
 
 Vampire::Vampire() {
     vampireTexture = NULL;
@@ -30,4 +30,9 @@ void Vampire::loadTexture(SDL_Renderer* gRenderer, const char* path) {
 void Vampire::render(SDL_Renderer* gRenderer, int x, int y ) {
     SDL_Rect renderQuad = { x, y, vampireRect.w, vampireRect.h };
     SDL_RenderCopy(gRenderer, vampireTexture, NULL, &renderQuad);
+}
+
+void Vampire::move(int x, int y) {
+    vampireRect.x = x;
+    vampireRect.y = y;
 }
